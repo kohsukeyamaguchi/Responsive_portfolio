@@ -1,0 +1,129 @@
+//変数
+$font-color_default:#777;
+$font-color_date:#e37b89; 
+$background-color_default:#fcf9f4;
+$bgcolor-box_default:#fbf6ef;
+$color-corp: #cd5e3c;
+$font-color_sub1: #b6a489;
+$font-color_menu-default: #696969;
+$font-color_menu-scroll: #FAF0E6;
+$font-family_default: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+$site-width: 980px;
+
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 24px;
+$font-size_xxl: 30px;
+$font-size_3l: 38px;
+
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+$font-family_corp: 'Noto Serif JP', serif;
+
+
+$breakpoints: (
+  'ss': 'screen and (max-width: 375px)',
+  'sm': 'screen and (max-width: 414px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+@mixin mq($breakpoint: sm){
+    @media #{map-get($breakpoints,$breakpoint)}{
+        @content;
+    }
+}
+
+// ==================================
+// panel
+// ==================================
+.c-panel {
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  transition: .5s;
+  &-hover {
+    display: inline-block;
+    transition: .5s;
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+      transition: .5s;
+    }
+  }
+  &-border {
+    border-radius: 5px;
+    border: 5px solid #f6f5f4;
+  }
+  &-head, &-foot {
+    padding: $space_m;
+  }
+  &-head {
+    text-align: center;
+    color: $color_corp;
+  }
+  &-active {
+    border: 5px solid $color_corp;
+  }
+  &-badge {
+    background: $color-corp;
+    color: #fff;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 1.3em;
+    padding: 15px 0;
+    box-sizing: border-box;
+    font-size: $font-size_s;
+    transform: rotate(15deg);
+      @include mq(){
+          top: -20px;
+          right: -13px;
+      }
+  }
+  &-group {
+    margin-right: -$space_l;
+    &-float {
+      overflow: hidden;
+    }
+    &-flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .c-panel {
+      float: left;
+      margin-right: $space_l;
+      margin-bottom: $space_l;
+      box-sizing: border-box;
+    }
+    @include mq($breakpoint: md){
+        margin-right: 0;
+    }
+  }
+  &-staff {
+    width: calc(25% - #{$space_l});
+      @include mq(){
+          width: calc(50% - #{$space_l});
+      }
+  }
+  &-cource {
+    width: calc(33.3% - #{$space_l});
+      @include mq(){
+          width: 100%;
+          margin: 0 auto $space_l auto;
+      }
+  }
+}
